@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', function () {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > lastScrollTop) {
+    if (scrollTop > lastScrollTop && scrollTop > 116) {
       // Scroll down
       nav.classList.remove('transform', 'translate-y-0');
       nav.classList.add('translate-y-full');
@@ -35,12 +35,13 @@ document.addEventListener('DOMContentLoaded', function () {
       // Scroll up
       nav.classList.remove('translate-y-full');
       nav.classList.add('transform', 'translate-y-0');
+      
       if (scrollTop === 0) {
         console.log('@@@@@@@')
         nav.classList.remove('py-2');
       }
     }
-
+ 
 
     lastScrollTop = scrollTop;
   });
