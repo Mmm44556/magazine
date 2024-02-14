@@ -9,7 +9,10 @@
     * {
       /* text-wrap: nowrap; */
       box-sizing: border-box;
-
+      /* padding-left: 0px !important; */
+      /* padding-right: 0px !important; */
+      /* margin-left: 0px !important; */
+      /* margin-right: 0px !important; */
     }
 
     #mostread {
@@ -23,7 +26,14 @@
         }
       }
     }
+
+    #scrollContainer {
+      scrollbar-width: thin;
+      scrollbar-gutter: stable;
+
+    }
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script type="module" src="./tailwind.config.js"></script>
   <script>
@@ -38,27 +48,268 @@
   </script>
 </head>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
 
-<body class="grid  w-full h-full overflow-x-hidden bg-gray-50 ">
 
-  <header class="sticky -top-28 z-50  transition-transform transform delay-1500 
-  " id="stickyNav" id="navigator">
-    <div>
-      <nav class="flex  justify-between border items-center p-4 bg-white" role="navigation">
-        <div class="flex">
-          <dialog role="dialog">
-            <button autofocus>Close</button>
-            <p>This modal dialog has a groovy backdrop!</p>
-          </dialog>
-          <button class="text-lg  font-bold  ml-5 hover:bg-gray-100  px-3 py-3 mr-1 rounded cursor-pointer max-sm:m-0">
+<body class="grid    w-full h-full overflow-x-hidden bg-gray-50 ">
+  <div id="drawer-backdrop"
+    class="fixed  left-0 top-0 z-40 h-dvh  p-8 overflow-y-auto transition-transform -translate-x-full bg-white w-1/3 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-backdrop-label">
+    <h5 id="drawer-backdrop-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
+    <button type="button" data-drawer-hide="drawer-backdrop" aria-controls="drawer-backdrop"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+    <div class="py-4 overflow-y-auto border-b-2">
+      <ul class="space-y-2 font-medium">
+        <li>
+          <a href="javascript:void(0)"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+              <path
+                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+              <path
+                d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+            </svg>
+            <span class="ms-3">Starting a Business</span>
+          </a>
+        </li>
+        <li>
+          <button type="button"
+            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+              <path
+                d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+            </svg>
+            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">E-commerce</span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+          <ul id="dropdown-example" class="hidden py-2 space-y-2">
+            <li>
+              <a href="javascript:void(0)"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 w-5 h-5 text-blue-600 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+              <path fill-rule="evenodd"
+                d="M10.5 3.798v5.02a3 3 0 0 1-.879 2.121l-2.377 2.377a9.845 9.845 0 0 1 5.091 1.013 8.315 8.315 0 0 0 5.713.636l.285-.071-3.954-3.955a3 3 0 0 1-.879-2.121v-5.02a23.614 23.614 0 0 0-3 0Zm4.5.138a.75.75 0 0 0 .093-1.495A24.837 24.837 0 0 0 12 2.25a25.048 25.048 0 0 0-3.093.191A.75.75 0 0 0 9 3.936v4.882a1.5 1.5 0 0 1-.44 1.06l-6.293 6.294c-1.62 1.621-.903 4.475 1.471 4.88 2.686.46 5.447.698 8.262.698 2.816 0 5.576-.239 8.262-.697 2.373-.406 3.092-3.26 1.47-4.881L15.44 9.879A1.5 1.5 0 0 1 15 8.818V3.936Z"
+                clip-rule="evenodd" />
+            </svg>
+
+            <span class="flex-1 ms-3 whitespace-nowrap">Science</span>
+            <span
+              class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M20.599 1.5c-.376 0-.743.111-1.055.32l-5.08 3.385a18.747 18.747 0 0 0-3.471 2.987 10.04 10.04 0 0 1 4.815 4.815 18.748 18.748 0 0 0 2.987-3.472l3.386-5.079A1.902 1.902 0 0 0 20.599 1.5Zm-8.3 14.025a18.76 18.76 0 0 0 1.896-1.207 8.026 8.026 0 0 0-4.513-4.513A18.75 18.75 0 0 0 8.475 11.7l-.278.5a5.26 5.26 0 0 1 3.601 3.602l.502-.278ZM6.75 13.5A3.75 3.75 0 0 0 3 17.25a1.5 1.5 0 0 1-1.601 1.497.75.75 0 0 0-.7 1.123 5.25 5.25 0 0 0 9.8-2.62 3.75 3.75 0 0 0-3.75-3.75Z"
+                clip-rule="evenodd" />
+            </svg>
+
+            <span class="flex-1 ms-3 whitespace-nowrap">Arts & Culture</span>
+            <span
+              class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+              class="flex-shrink-0 w-5 h-5 text-red-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M19.952 1.651a.75.75 0 0 1 .298.599V16.303a3 3 0 0 1-2.176 2.884l-1.32.377a2.553 2.553 0 1 1-1.403-4.909l2.311-.66a1.5 1.5 0 0 0 1.088-1.442V6.994l-9 2.572v9.737a3 3 0 0 1-2.176 2.884l-1.32.377a2.553 2.553 0 1 1-1.402-4.909l2.31-.66a1.5 1.5 0 0 0 1.088-1.442V5.25a.75.75 0 0 1 .544-.721l10.5-3a.75.75 0 0 1 .658.122Z"
+                clip-rule="evenodd" />
+            </svg>
+
+
+
+            <span class="flex-1 ms-3 whitespace-nowrap">Music</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true">
+              <path
+                d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z" />
+              <path
+                d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z" />
+              <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+            </svg>
+
+            <span class="flex-1 ms-3 whitespace-nowrap">Automotive</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+            </svg>
+            <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
+              <path
+                d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
+              <path
+                d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
+            </svg>
+            <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-col-reverse border-b-2 p-4">
+      <div class="leading-6 text-gray-400">
+        Copyright &copy; 2024 Mmm44556. All rights reserved.
+
+      </div>
+      <div>
+
+        <ul class="flex flex-wrap flex-row gap-4  justify-center items-center font-bold py-4 cursor-pointer">
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round"
-                d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
             </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+            </svg>
+          </li>
+        </ul>
 
-          </button>
+
+
+      </div>
+    </div>
+  </div>
+  <header class="sticky -top-28 z-50 transition-transform transform delay-1500" id="stickyNav" id="navigator">
+    <div>
+      <nav class="flex  justify-between border items-center p-4 bg-white" role="navigation">
+
+        <div class="flex">
+
+          <!-- drawer init and toggle -->
+          <div class="text-center">
+            <button class="text-lg  font-bold  ml-5 hover:bg-gray-100  px-3 py-3 mr-1 rounded cursor-pointer max-sm:m-0"
+              type="button" id="menu-drawer" data-drawer-target="drawer-backdrop" data-drawer-show="drawer-backdrop"
+              data-drawer-backdrop="true" aria-controls="drawer-backdrop">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+              </svg>
+            </button>
+          </div>
+
+
+
           <a href="#homepage" title="return to the homepage" class="flex items-center">
             <h1 class="text-4xl max-md:text-3xl max-sm:text-xl ">Magazine</h1>
           </a>
@@ -72,7 +323,7 @@
               </a>
             </li>
             <li>
-              <a href="#subscribe"
+              <a href="#BreakingNews"
                 class=" relative text-lg font-bold ml-5 max-md:hidden  bg-red-500  hover:bg-red-600 text-white py-4 px-5 rounded max-sm:p-0">
                 Breaking news
                 <span class="absolute -right-0.5 -top-0.5">
@@ -94,7 +345,9 @@
         </div>
       </nav>
     </div>
+
   </header>
+
   <div class="bg-blue-700 text-white font-bold font-mono flex justify-center items-center h-14 mb-6 ">
     <div class="cursor-pointer hover:border-b flex">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -106,284 +359,263 @@
     </div>
 
   </div>
-  <main class="container w-full pb-24 pl-20 pr-10 max-sm:px-10 max-lg:px-0">
-    <div class=" grid grid-cols-5 ">
-      <div class="col-span-4 max-xl:col-span-full max-xl:px-10 max-xl:mb-10">
-        <div class=" flex max-md:flex-col">
-          <div class=" max-md:order-2  basis-6/12 ">
+  <div class="w-full ">
+    <main class="container  pb-24 px-4 ">
+      <div class=" grid grid-cols-[75%_25%] max-lg:grid-cols-none max-lg:auto-grid-row ">
+        <div class=" max-xl:mb-10">
+          <div class=" flex max-md:flex-col">
+            <div class=" max-md:order-2  basis-6/12 ">
 
-            <div class="cursor-pointer max-md:pb-5">
+              <div class="cursor-pointer max-md:pb-5">
 
-              <img src="./assets/engineer.jpg" alt="engineer"
-                class="max-w-full   z-0 hover:drop-shadow-lg rounded-xl transition ease-in-out duration-150 mb-2">
+                <img src="./assets/engineer.jpg" alt="engineer"
+                  class="w-full   z-0 hover:drop-shadow-lg rounded-xl transition ease-in-out duration-150 mb-2">
+                <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
+                  Engineer & car engine
+                </div>
+                <h2
+                  class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-gray-800 hover:underline text-lg lg:text-xl ">
+                  An engineer has
+                  developed a car
+                  engine that runs solely on water.
+                </h2>
 
-
-              <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
-                Engineer & car engine
               </div>
-              <h2
-                class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-gray-800 hover:underline text-lg lg:text-xl ">
-                An engineer has
-                developed a car
-                engine that runs solely on water.
-              </h2>
-
+              <div class="cursor-pointer max-md:pb-5">
+                <img src="./assets/jaguar.jpg" alt="engineer"
+                  class="w-full  z-0 hover:drop-shadow-lg  rounded-xl transition ease-in-out duration-150 mb-2">
+                <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
+                  BRAND & production
+                </div>
+                <h2
+                  class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-gray-800 hover:underline text-lg lg:text-xl">
+                  A British sportscar brand which over the decades became renowned for their engines, most notably a
+                  certain
+                  5 litre
+                  supercharged V8.
+                </h2>
+              </div>
             </div>
-            <div class="cursor-pointer max-md:pb-5">
-              <img src="./assets/jaguar.jpg" alt="engineer"
-                class="max-w-full  z-0 hover:drop-shadow-lg  rounded-xl transition ease-in-out duration-150 mb-2">
-              <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
-                BRAND & production
+            <div class=" max-md:order-1  basis-full px-10 max-md:px-0 max-md:pb-5">
+              <div class="cursor-pointer">
+                <img src="./assets/coding.jpg" alt="engineer"
+                  class="w-full  z-0 hover:drop-shadow-lg  rounded-xl transition ease-in-out duration-150 mb-2">
+                <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
+                  Coding & programming language
+                </div>
+                <h2
+                  class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-gray-800 hover:underline text-lg lg:text-xl">
+
+                  Top Programming Languages in 2023: <br>Trends and Uses | by Accretive Technology Group | Dec, 2023
+                </h2>
               </div>
-              <h2
-                class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-gray-800 hover:underline text-lg lg:text-xl">
-                A British sportscar brand which over the decades became renowned for their engines, most notably a
-                certain
-                5 litre
-                supercharged V8.
-              </h2>
             </div>
           </div>
-          <div class=" max-md:order-1  basis-full px-10 max-md:px-0 max-md:pb-5">
-            <div class="cursor-pointer">
-              <img src="./assets/coding.jpg" alt="engineer"
-                class="max-w-full  z-0 hover:drop-shadow-lg  rounded-xl transition ease-in-out duration-150 mb-2">
-              <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
-                Coding & programming language
-              </div>
-              <h2
-                class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-gray-800 hover:underline text-lg lg:text-xl">
 
-                Top Programming Languages in 2023: <br>Trends and Uses | by Accretive Technology Group | Dec, 2023
-              </h2>
-            </div>
-          </div>
         </div>
 
+        <div class=" flex flex-col ">
+          <h2 id="mostread" class="text-gray-800 flex flex-row items-center leading-6 font-black uppercase text-2xl md:text-3xl lg:leading-7 font-heading tracking-wide pb-3
+        hover:underline ">
+            <a href="javascript:void(0)">
+              MOST READ
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="  w-8 h-8 hover:cursor-pointer ">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+            </svg>
+
+          </h2>
+          <div class=" text-gray-500 text-lg font-semibold  tracking-widest leading-none pb-10">
+            For December 8,2023
+          </div>
+          <div class="">
+            <div class="flex pb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1"
+                viewBox="0 0 16 16">
+                <path
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383z" />
+              </svg>
+
+              <p class="cursor-pointer hover:underline font-semibold text-gray-700">Instagram’s co-founders are shutting
+                down
+                their Artifact news app</p>
+
+            </div>
+            <div class="flex pb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1"
+                viewBox="0 0 16 16">
+                <path
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306" />
+              </svg>
+              <p class="cursor-pointer hover:underline font-semibold text-gray-700">55 Small Business Ideas to Start in
+                2023
+              </p>
+
+            </div>
+            <div class=" flex pb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1"
+                viewBox="0 0 16 16">
+                <path
+                  d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318" />
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8" />
+              </svg>
+              <p class="cursor-pointer hover:underline font-semibold text-gray-700">A Mountain of Used Clothes Appeared
+                in
+                Chile’s Desert. Then It Went Up
+                in Flames</p>
+
+            </div>
+            <div class=" flex pb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1 "
+                viewBox="0 0 16 16">
+                <path
+                  d="M7.519 5.057q.33-.527.657-1.055h1.933v5.332h1.008v1.107H10.11V12H8.85v-1.559H4.978V9.322c.77-1.427 1.656-2.847 2.542-4.265ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218" />
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8" />
+              </svg>
+              <p class="cursor-pointer hover:underline font-semibold text-gray-700">Google Fixes Nearly 100 Android
+                Security
+                Issues</p>
+
+            </div>
+            <div class="flex pb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1 "
+                viewBox="0 0 16 16">
+                <path
+                  d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8m15 0A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-8.006 4.158c-1.57 0-2.654-.902-2.719-2.115h1.237c.14.72.832 1.031 1.529 1.031.791 0 1.57-.597 1.57-1.681 0-.967-.732-1.57-1.582-1.57-.767 0-1.242.45-1.435.808H5.445L5.791 4h4.705v1.103H6.875l-.193 2.343h.064c.17-.258.715-.68 1.611-.68 1.383 0 2.561.944 2.561 2.585 0 1.687-1.184 2.806-2.924 2.806Z" />
+              </svg>
+              <p class="cursor-pointer hover:underline font-semibold text-gray-700">Apple won the CES headset game
+                without
+                showing up</p>
+            </div>
+            <div class="flex pb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1 "
+                viewBox="0 0 16 16">
+                <path
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.21 3.855c1.612 0 2.515.99 2.573 1.899H9.494c-.1-.358-.51-.815-1.312-.815-1.078 0-1.817 1.09-1.805 3.036h.082c.229-.545.855-1.155 1.98-1.155 1.254 0 2.508.88 2.508 2.555 0 1.77-1.218 2.783-2.847 2.783-.932 0-1.84-.328-2.409-1.254-.369-.603-.597-1.459-.597-2.642 0-3.012 1.248-4.407 3.117-4.407Zm-.099 4.008c-.92 0-1.564.65-1.564 1.576 0 1.032.703 1.635 1.558 1.635.868 0 1.553-.533 1.553-1.629 0-1.06-.744-1.582-1.547-1.582" />
+              </svg>
+              <p class="cursor-pointer hover:underline font-semibold text-gray-700">The SEC’s Official X Account Was
+                ‘Compromised’ and Used to Post Fake
+                Bitcoin News</p>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <div class="col-span-1 max-lg:col-span-full flex flex-col max-xl:col-span-full">
-        <h2 id="mostread" class="text-gray-800 flex flex-row items-center leading-6 font-black uppercase text-2xl md:text-3xl lg:leading-7 font-heading tracking-wide pb-3
-        hover:underline ">
-          <a href="javascript:void(0)">
-            MOST READ
-          </a>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="  w-8 h-8 hover:cursor-pointer ">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-          </svg>
+      <div class="border-t-2">
+        <div class=" flex justify-between py-7">
+          <h2 class="text-4xl font-extrabold">
+            LATEST
+          </h2>
+          <div class="flex text-lg font-semibold text-blue-800 hover:underline hover:cursor-pointer">
+            <span class="mr-1 ">
+              See All
+            </span>
 
-        </h2>
-        <div class=" text-gray-500 text-lg font-semibold  tracking-widest leading-none pb-10">
-          For December 8,2023
-        </div>
-        <div class="">
-          <div class="flex pb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1"
-              viewBox="0 0 16 16">
-              <path
-                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383z" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+              class="w-6 h-6 fill-yellow-400">
+              <path fill-rule="evenodd" class=""
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z"
+                clip-rule="evenodd" />
             </svg>
-
-            <p class="cursor-pointer hover:underline font-semibold text-gray-700">Instagram’s co-founders are shutting
-              down
-              their Artifact news app</p>
-
           </div>
-          <div class="flex pb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1"
-              viewBox="0 0 16 16">
-              <path
-                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306" />
-            </svg>
-            <p class="cursor-pointer hover:underline font-semibold text-gray-700">55 Small Business Ideas to Start in
-              2023
+        </div>
+      </div>
+      <div class="flex max-lg:flex-col-reverse max-lg:gap-20 mb-20">
+        <div class="basis-9/12 grid gird-row gap-4  ">
+          <div class="flex ">
+            <div class="rounded-full overflow-hidden flex-none mr-6 drop-shadow-xl h-fit ">
+              <img src="./assets/KevinLeary.jpg" alt="KevinLeary" class="w-20 h-20 rounded-full object-cover">
+            </div>
+            <p
+              class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
+              Shark Tank's Kevin O'Leary Recommends This 6-Step Social Media Strategy to Be Profitable
+            </p>
+          </div>
+          <div class="flex ">
+            <div class="rounded-full overflow-hidden flex-none mr-6 drop-shadow-xl h-fit ">
+              <img src="./assets/siri.jpg" alt="siri" class="w-20 h-20 rounded-full object-cover">
+            </div>
+            <p
+              class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
+              Apple asks its San Diego Siri quality control team to relocate to Texas
+              WES DAVISJAN 14
+            </p>
+          </div>
+          <div class="flex">
+            <div class="rounded-full overflow-hidden flex-none mr-6 drop-shadow-xl h-fit ">
+              <img src="./assets/office.jpg" alt="office" class="w-20 h-20 rounded-full object-cover">
+            </div>
+            <p
+              class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
+              Yes, We're Still Messing Up Hybrid Work. Here's Where Exactly We're Going Wrong.
             </p>
 
           </div>
-          <div class=" flex pb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1"
-              viewBox="0 0 16 16">
-              <path
-                d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318" />
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8" />
-            </svg>
-            <p class="cursor-pointer hover:underline font-semibold text-gray-700">A Mountain of Used Clothes Appeared in
-              Chile’s Desert. Then It Went Up
-              in Flames</p>
-
-          </div>
-          <div class=" flex pb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1 "
-              viewBox="0 0 16 16">
-              <path
-                d="M7.519 5.057q.33-.527.657-1.055h1.933v5.332h1.008v1.107H10.11V12H8.85v-1.559H4.978V9.322c.77-1.427 1.656-2.847 2.542-4.265ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218" />
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8" />
-            </svg>
-            <p class="cursor-pointer hover:underline font-semibold text-gray-700">Google Fixes Nearly 100 Android
-              Security
-              Issues</p>
-
-          </div>
-          <div class="flex pb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1 "
-              viewBox="0 0 16 16">
-              <path
-                d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8m15 0A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-8.006 4.158c-1.57 0-2.654-.902-2.719-2.115h1.237c.14.72.832 1.031 1.529 1.031.791 0 1.57-.597 1.57-1.681 0-.967-.732-1.57-1.582-1.57-.767 0-1.242.45-1.435.808H5.445L5.791 4h4.705v1.103H6.875l-.193 2.343h.064c.17-.258.715-.68 1.611-.68 1.383 0 2.561.944 2.561 2.585 0 1.687-1.184 2.806-2.924 2.806Z" />
-            </svg>
-            <p class="cursor-pointer hover:underline font-semibold text-gray-700">Apple won the CES headset game without
-              showing up</p>
-          </div>
-          <div class="flex pb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              class="border-2  flex flex-none justify-center items-center font-black rounded-full text-red-700 w-8 h-8 mr-3 mt-1 "
-              viewBox="0 0 16 16">
-              <path
-                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.21 3.855c1.612 0 2.515.99 2.573 1.899H9.494c-.1-.358-.51-.815-1.312-.815-1.078 0-1.817 1.09-1.805 3.036h.082c.229-.545.855-1.155 1.98-1.155 1.254 0 2.508.88 2.508 2.555 0 1.77-1.218 2.783-2.847 2.783-.932 0-1.84-.328-2.409-1.254-.369-.603-.597-1.459-.597-2.642 0-3.012 1.248-4.407 3.117-4.407Zm-.099 4.008c-.92 0-1.564.65-1.564 1.576 0 1.032.703 1.635 1.558 1.635.868 0 1.553-.533 1.553-1.629 0-1.06-.744-1.582-1.547-1.582" />
-            </svg>
-            <p class="cursor-pointer hover:underline font-semibold text-gray-700">The SEC’s Official X Account Was
-              ‘Compromised’ and Used to Post Fake
-              Bitcoin News</p>
-          </div>
         </div>
-
-      </div>
-    </div>
-
-    <div class="border-t-2">
-      <div class=" flex justify-between py-7">
-        <h2 class="text-4xl font-extrabold">
-          LATEST
-        </h2>
-        <div class="flex text-lg font-semibold text-blue-800 hover:underline hover:cursor-pointer">
-          <span class="mr-1 ">
-            See All
-          </span>
-
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-            class="w-6 h-6 fill-yellow-400">
-            <path fill-rule="evenodd" class=""
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z"
-              clip-rule="evenodd" />
-          </svg>
+        <div class="grid grid-cols-2 basis-full ">
+          <div>
+            <div class="md:aspect-[16/9] mb-5 ">
+              <img src="./assets/cat.jpg" alt="cat" class="rounded-md shadow-xl " width="75%">
+            </div>
+            <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
+              BUSINESS NEWS
+            </div>
+            <p
+              class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
+              The Internet Can't Get Enough of Frosty the Fat 28-Pound Cat
+            </p>
+            <span class="text-gray-500">
+              The cat was adopted on Thursday from Richmond Animal Care and Control.
+            </span>
+          </div>
+          <div>
+            <div class="md:aspect-[16/9] mb-5">
+              <img src="./assets/business.jpg" alt="cat" class="rounded-md shadow-xl" width="75%">
+            </div>
+            <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
+              GUIDE
+            </div>
+            <p
+              class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
+              The 6 Best Small Business Phone Systems
+            </p>
+            <span class="text-gray-500">
+              These top business phone system providers are our picks for small businesses looking for a platform to
+              stay
+              connected
+              with employees, partners, and customers.
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="flex max-lg:flex-col-reverse max-lg:gap-20 mb-20">
-      <div class="basis-9/12 grid gird-row gap-4  ">
-        <div class="flex ">
-          <div class="rounded-full overflow-hidden flex-none mr-6 drop-shadow-xl h-fit ">
-            <img src="./assets/KevinLeary.jpg" alt="KevinLeary" class="w-20 h-20 rounded-full object-cover">
-          </div>
-          <p
-            class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-            Shark Tank's Kevin O'Leary Recommends This 6-Step Social Media Strategy to Be Profitable
-          </p>
-        </div>
-        <div class="flex ">
-          <div class="rounded-full overflow-hidden flex-none mr-6 drop-shadow-xl h-fit ">
-            <img src="./assets/siri.jpg" alt="siri" class="w-20 h-20 rounded-full object-cover">
-          </div>
-          <p
-            class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-            Apple asks its San Diego Siri quality control team to relocate to Texas
-            WES DAVISJAN 14
-          </p>
-        </div>
-        <div class="flex">
-          <div class="rounded-full overflow-hidden flex-none mr-6 drop-shadow-xl h-fit ">
-            <img src="./assets/office.jpg" alt="office" class="w-20 h-20 rounded-full object-cover">
-          </div>
-          <p
-            class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-            Yes, We're Still Messing Up Hybrid Work. Here's Where Exactly We're Going Wrong.
-          </p>
 
-        </div>
-      </div>
-      <div class="grid grid-cols-2 basis-full ">
-        <div>
-          <div class="md:aspect-[16/9] mb-5 ">
-            <img src="./assets/cat.jpg" alt="cat" class="rounded-md shadow-xl " width="75%">
-          </div>
-          <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
-            BUSINESS NEWS
-          </div>
-          <p
-            class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-            The Internet Can't Get Enough of Frosty the Fat 28-Pound Cat
-          </p>
-          <span class="text-gray-500">
-            The cat was adopted on Thursday from Richmond Animal Care and Control.
-          </span>
-        </div>
-        <div>
-          <div class="md:aspect-[16/9] mb-5">
-            <img src="./assets/business.jpg" alt="cat" class="rounded-md shadow-xl" width="75%">
-          </div>
-          <div class="uppercase text-gray-600 text-xs lg:text-sm tracking-widest leading-none">
-            GUIDE
-          </div>
-          <p
-            class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-            The 6 Best Small Business Phone Systems
-          </p>
-          <span class="text-gray-500">
-            These top business phone system providers are our picks for small businesses looking for a platform to stay
-            connected
-            with employees, partners, and customers.
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="border-dashed border-y-2 py-10 pb-14 mb-20 border-red-600 rounded-md ">
-      <h2 class="text-gray-800 flex flex-row items-center leading-6 uppercase text-3xl font-extrabold lg:leading-7 font-heading tracking-wide pb-3 mb-5
+      <div class="border-dashed border-y-2 py-10 pb-14 mb-20 border-red-600 rounded-md ">
+        <h2 class="text-gray-800 flex flex-row items-center leading-6 uppercase text-3xl font-extrabold lg:leading-7 font-heading tracking-wide pb-3 mb-5
         hover:underline ">
-        <a href="javascript:void(0)">
-          FEATURED VOICES
-        </a>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="  w-8 h-8 hover:cursor-pointer rotate-6 scale-x-100 -scale-y-100">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-        </svg>
-      </h2>
-      <div class="grid grid-cols-3  gap-5 max-lg:grid-cols-none  max-lg:grid-rows-3">
-        <div>
-          <div class="flex items-center gap-4">
-            <img class="w-20 h-20 rounded-full self-baseline" src="./assets/aiden.jpg" alt="">
-            <div class="font-medium dark:text-white ">
-              <div
-                class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-indigo-600">
-                Aiden Patel
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                  <path fill-rule="evenodd"
-                    d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                    clip-rule="evenodd" />
-                </svg>
-
-              </div>
-              <div
-                class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-                "Digital Marketing Mastery: Strategies for Success"
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-
+          <a href="javascript:void(0)">
+            FEATURED VOICES
+          </a>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="  w-8 h-8 hover:cursor-pointer rotate-6 scale-x-100 -scale-y-100">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+          </svg>
+        </h2>
+        <div class="grid grid-cols-3  gap-5 max-lg:grid-cols-none  max-lg:grid-rows-3">
           <div>
             <div class="flex items-center gap-4">
-              <img class="w-20 h-20 rounded-full self-baseline" src="./assets/Nikolai.jpg" alt="">
+              <img class="w-20 h-20 rounded-full self-baseline" src="./assets/aiden.jpg" alt="">
               <div class="font-medium dark:text-white ">
                 <div
                   class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-indigo-600">
-                  Nikolai Ivanov
+                  Aiden Patel
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                     <path fill-rule="evenodd"
                       d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
@@ -393,43 +625,68 @@
                 </div>
                 <div
                   class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-                  "Culinary Fusion: Global Flavors in Your Kitchen"
+                  "Digital Marketing Mastery: Strategies for Success"
                 </div>
               </div>
             </div>
-
           </div>
-        </div>
+          <div>
 
-        <div>
+            <div>
+              <div class="flex items-center gap-4">
+                <img class="w-20 h-20 rounded-full self-baseline" src="./assets/Nikolai.jpg" alt="">
+                <div class="font-medium dark:text-white ">
+                  <div
+                    class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-indigo-600">
+                    Nikolai Ivanov
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                      <path fill-rule="evenodd"
+                        d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                        clip-rule="evenodd" />
+                    </svg>
+
+                  </div>
+                  <div
+                    class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
+                    "Culinary Fusion: Global Flavors in Your Kitchen"
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
 
           <div>
-            <div class="flex items-center gap-4">
-              <img class="w-20 h-20 rounded-full self-baseline" src="./assets/Amelia.jpg" alt="">
-              <div class="font-medium dark:text-white ">
-                <div
-                  class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-indigo-600">
-                  Amelia Kowalczyk
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                    <path fill-rule="evenodd"
-                      d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                      clip-rule="evenodd" />
-                  </svg>
 
-                </div>
-                <div
-                  class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
-                  "Exploring the Cosmos: A Journey into Astronomy"
+            <div>
+              <div class="flex items-center gap-4">
+                <img class="w-20 h-20 rounded-full self-baseline" src="./assets/Amelia.jpg" alt="">
+                <div class="font-medium dark:text-white ">
+                  <div
+                    class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-indigo-600">
+                    Amelia Kowalczyk
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                      <path fill-rule="evenodd"
+                        d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                        clip-rule="evenodd" />
+                    </svg>
+
+                  </div>
+                  <div
+                    class="pr-5 tracking-tight leading-6 font-black cursor-pointer lg:leading-7 text-gray-800 hover:underline text-lg lg:text-xl">
+                    "Exploring the Cosmos: A Journey into Astronomy"
+                  </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
-    <div class=" border-y-2 py-10">
+    </main>
+  </div>
+  <div class="w-full  border-y-2 py-10">
+    <div class="px-4">
       <h2 class="text-gray-800 flex flex-row items-center leading-6 text-3xl font-extrabold uppercase  lg:leading-7 font-heading tracking-wide pb-3 mb-5
               hover:underline ">
         <a href="javascript:void(0)">
@@ -450,7 +707,7 @@
           the franchise industry over the last year -- and how franchisors have adopted and evolved to meet them.
         </span>
         <div class="">
-          <a href="javascript:void(0)" class="text-lg  font-bold   bg-yellow-300  
+          <a href="javascript:void(0)" class="text-lg  font-bold shadow-lg  bg-yellow-300  
         hover:bg-yellow-400  py-4 px-5 rounded  max-sm:p-0">
             See the List
           </a>
@@ -780,9 +1037,12 @@
         </div>
       </div>
     </div>
-  </main>
-  <div class="w-full bg-[#08032c]">
-    <div class="container pt-8 px-20">
+  </div>
+
+  </div>
+
+  <div class="w-full  bg-[#08032c] mb-20 ">
+    <div class="container  pt-8 ">
       <div class=" flex justify-between py-5">
         <h2 class="text-3xl font-extrabold text-white">
           <var class="not-italic">ENTREPRENEUR<sup>&reg;</sup></var> TV
@@ -801,10 +1061,10 @@
         </div>
       </div>
 
-      <div class="grid grid-rows-4 ">
-        <div class="grid grid-cols-2 gap-14">
-          <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer">
-            <img src="./assets/entrepreneur.jpg" class="w-full    object-contain rounded-lg grayscale" alt="">
+      <div class="grid auto-rows-max   gap-20 ">
+        <div class="grid max-lg:grid-cols-subgrid grid-cols-2 gap-14">
+          <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer ">
+            <img src="./assets/entrepreneur.jpg" class=" w-full   object-contain rounded-lg grayscale" alt="">
             <div class="absolute bottom-0 right-0  rounded-lg  bg-yellow-300">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-20 h-20  fill-[#08032c]">
@@ -815,55 +1075,770 @@
 
 
           </div>
-          <div class="grid auto-rows-auto ">
-            <div>
-              <div class="uppercase text-gray-200 text-xs lg:text-sm tracking-widest leading-none">
-                BRAND & PRODUCTION
+          <div>
+            <div class="description grid auto-rows-max px-4">
+              <div>
+                <div class="uppercase text-gray-200 text-xs lg:text-sm tracking-widest leading-none">
+                  BRAND & PRODUCTION
+                </div>
+                <div class="font-extrabold text-white text-3xl hover:underline cursor-pointer">
+                  'We Pulled Off An SEO Heist': Entrepreneur Stole 3.6 Million Pageviews From Competitors — And Your
+                  Business Could Be
+                  Next.
+                </div>
+                <p class="text-white">
+                  This has huge implications for businesses that rely on Google's organic traffic for revenue.
+                </p>
               </div>
-              <div class="font-extrabold text-white text-3xl hover:underline cursor-pointer">
-                'We Pulled Off An SEO Heist': Entrepreneur Stole 3.6 Million Pageviews From Competitors — And Your
-                Business Could Be
-                Next.
+
+              <div class=" avatar">
+                <div class="flex items-center gap-4">
+                  <img class="w-10 h-10 object-cover object-right rounded-full self-baseline"
+                    src="./assets/entrepreneur.jpg" alt="">
+                  <div class="font-medium dark:text-white ">
+                    <div
+                      class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-white hover:underline cursor-pointer">
+                      Aiden Patel
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p class="text-white">
-                This has huge implications for businesses that rely on Google's organic traffic for revenue.
-              </p>
             </div>
 
-            <div class="">
+
+          </div>
+
+        </div>
+        <div class="grid max-xl:grid-cols-subgrid grid-cols-3 gap-10 px-4">
+          <div class="grid gap-2 max-xl:grid-cols-2 ">
+            <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer max-md:order-last">
+              <img src="./assets/online_course1.jpg" class="w-full     object-contain rounded-lg" alt="">
+              <div
+                class="absolute bottom-1/2 left-1/2  rounded-lg  bg-black opacity-75 -translate-x-1/2 translate-y-1/3 ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-16 h-14  fill-white">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                </svg>
+              </div>
+            </div>
+            <div class="grid  gap-5 ">
+              <div class="uppercase text-white text-xs lg:text-sm tracking-widest leading-none">
+                Front end & Optimization
+              </div>
+              <h2
+                class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-white hover:underline text-lg lg:text-xl ">
+                Unlock the secrets to skyrocketing your website's visibility and driving organic traffic with our
+                comprehensive SEO
+                course.
+              </h2>
               <div class="flex items-center gap-4">
-                <img class="w-10 h-10 object-cover object-right rounded-full self-baseline"
-                  src="./assets/entrepreneur.jpg" alt="">
+                <img class="w-10 h-10 object-cover object-center rounded-full self-baseline"
+                  src="./assets/online_course1.jpg" alt="">
                 <div class="font-medium dark:text-white ">
                   <div
                     class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-white hover:underline cursor-pointer">
-                    Aiden Patel
+                    Harrison Cole
+                  </div>
+                </div>
+              </div>
+            </div>
 
+          </div>
 
+          <div class="grid gap-2 max-xl:grid-cols-2">
+            <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer max-md:order-last">
+              <img src="./assets/online_course2.jpg" class="w-full    object-contain rounded-lg" alt="">
+              <div
+                class="absolute bottom-1/2 left-1/2  rounded-lg  bg-black opacity-75 -translate-x-1/2 translate-y-1/3 ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-16 h-14  fill-white">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                </svg>
+              </div>
+            </div>
+            <div class="grid gap-5">
+              <div class="uppercase text-white text-xs lg:text-sm tracking-widest leading-none">
+                PHOTOGRAPH
+              </div>
+              <h2
+                class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-white hover:underline text-lg lg:text-xl ">
+                Discover the principles of composition and learn how to frame your shots for maximum impact and visual
+                appeal.
+              </h2>
+              <div class="flex items-center gap-4">
+                <img class="w-10 h-10 object-cover object-center rounded-full self-baseline"
+                  src="./assets/online_course2.jpg" alt="">
+                <div class="font-medium dark:text-white ">
+                  <div
+                    class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-white hover:underline cursor-pointer">
+                    Alexander Grant
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="grid gap-2 max-xl:grid-cols-2">
+            <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer max-md:order-last">
+              <img src="./assets/online_course3.jpg" class="w-full    object-contain rounded-lg" alt="">
+              <div
+                class="absolute bottom-1/2 left-1/2  rounded-lg  bg-black opacity-75 -translate-x-1/2 translate-y-1/3 ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-16 h-14  fill-white">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                </svg>
+              </div>
+            </div>
+            <div class="grid gap-5 ">
+              <div class="uppercase text-white text-xs lg:text-sm tracking-widest leading-none">
+                2D & Pixel
+              </div>
+              <h2
+                class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-white hover:underline text-lg lg:text-xl ">
+                Discover time-saving techniques and productivity hacks for streamlining your pixel art workflow and
+                staying organized.
+              </h2>
+              <div class="flex items-center gap-4">
+                <img class="w-10 h-10 object-cover object-center rounded-full self-baseline"
+                  src="./assets/online_course3.jpg" alt="">
+                <div class="font-medium dark:text-white ">
+                  <div
+                    class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-white hover:underline cursor-pointer">
+                    Elliot Parker
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="grid auto-rows-max">
+          <div>
+            <div class=" flex justify-between ">
+              <h2 class=" flex flex-row items-center leading-6 uppercase text-3xl font-extrabold lg:leading-7 font-heading tracking-wide pb-3 mb-5
+                    hover:underline ">
+                <a class="text-white" href="javascript:void(0)">
+                  FEATURED VOICES
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor"
+                  class="text-red-600 w-8 h-8 hover:cursor-pointer rotate-6 scale-x-100 -scale-y-100">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                </svg>
+              </h2>
+              <div class="flex text-lg font-semibold text-white hover:underline hover:cursor-pointer">
+                <span class="mr-1 ">
+                  See All
+                </span>
 
-          <div>b</div>
-          <div>c</div>
-          <div>d</div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                  class="w-6 h-6 fill-yellow-400">
+                  <path fill-rule="evenodd" class=""
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="container  flex-grow w-full py-4 sm:py-16 mx-auto px-0 ">
+
+            <div id="scrollContainer"
+              class="flex flex-no-wrap snap-x snap-mandatory overflow-x-auto scrolling-touch items-start ">
+              <div class="flex-none w-3/12  mr-8 snap-always snap-center  rounded-lg">
+                <a href="javascript:void(0)" class="space-y-4">
+                  <div class="">
+                    <img class="object-cover shadow-md hover:shadow-xl
+                   h-96 w-full rounded-lg " src="./assets/day_life.jpg" alt="" />
+                  </div>
+                </a>
+                <div class="px-4 py-2">
+                  <div class="text-lg leading-6 font-medium space-y-1">
+                    <h3 class="font-bold text-white text-3xl mb-2">
+                      The Mood
+                    </h3>
+                  </div>
+                  <div class="text-lg">
+                    <p class="text-white font-serif leading-6">
+                      "Transform your style into a statement with our 'The Mood with Outfit' course, where you'll learn
+                      to curate outfits that
+                      perfectly reflect your mood and personality."
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-none w-3/12  mr-8 snap-always snap-center  rounded-lg">
+                <a href="javascript:void(0)" class="space-y-4">
+                  <div class="">
+                    <img class="object-cover shadow-md hover:shadow-xl
+                   h-96  rounded-lg " src="./assets/net.jpg" alt="" />
+                  </div>
+                </a>
+                <div class="px-4 py-2">
+                  <div class="text-lg leading-6 font-medium space-y-1">
+                    <h3 class="font-bold text-white text-3xl mb-2">
+                      NET
+                    </h3>
+                  </div>
+                  <div class="text-lg">
+                    <p class="text-white leading-6 font-serif">
+                      Navigate the digital landscape with confidence in our 'Internet' course, where you'll gain
+                      essential skills for
+                      maximizing your online presence and harnessing the full potential of the internet.
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-none w-3/12   mr-8 snap-always snap-center  rounded-lg">
+                <a href="javascript:void(0)" class="space-y-4">
+                  <div class="">
+                    <img class="object-cover shadow-md hover:shadow-xl
+                   h-96  rounded-lg " src="./assets/surprise.jpg" alt="" />
+                  </div>
+                </a>
+                <div class="px-4 py-2">
+                  <div class="text-lg leading-6 font-medium space-y-1">
+                    <h3 class="font-bold text-white text-3xl mb-2">
+                      'How to Make Surprise'
+                    </h3>
+                  </div>
+                  <div class="text-lg">
+                    <p class="text-white font-serif leading-6">
+                      Surprise and delight with ease in our 'How to Make Surprise' course, where you'll discover the
+                      secrets to crafting
+                      memorable surprises that bring joy and excitement to any occasion.
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-none w-3/12  mr-8  snap-always snap-center rounded-lg">
+                <a href="javascript:void(0)" class="space-y-4">
+                  <div class="">
+                    <img class="object-cover shadow-md hover:shadow-xl
+                   h-96 w-full  rounded-lg " src="./assets/airpods.jpg" alt="" />
+                  </div>
+                </a>
+                <div class="px-4 py-2">
+                  <div class="text-lg leading-6 font-medium space-y-1">
+                    <h3 class="font-bold text-white text-3xl mb-2">
+
+                      AirPods 3
+                    </h3>
+                  </div>
+                  <div class="text-lg">
+                    <p class="text-white font-serif leading-6">
+                      Stay ahead of the curve with our 'AirPods 3' course, where you'll explore the latest features and
+                      functionalities of
+                      Apple's cutting-edge wireless earbuds and maximize your listening experience.
+
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-none w-3/12   mr-8  snap-always snap-center rounded-lg">
+                <a href="javascript:void(0)" class="space-y-4">
+                  <div class="">
+                    <img class="object-cover shadow-md hover:shadow-xl h-96  rounded-lg " src="./assets/xr.jpg"
+                      alt="" />
+                  </div>
+                </a>
+                <div class="px-4 py-2">
+                  <div class="text-lg leading-6 font-medium space-y-1">
+                    <h3 class="font-bold text-white text-3xl mb-2">
+
+                      Vision Pro
+                    </h3>
+                  </div>
+                  <div class="text-lg">
+                    <p class="text-white font-serif leading-6">
+                      Elevate your photography skills to professional levels with our 'Vision Pro' course, designed to
+                      hone your eye for
+                      composition, lighting, and storytelling through stunning visuals.
+
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="px-4 pb-4">
+        <hr class="border-gray-600 mb-10" />
+        <div class="grid grid-cols-2 gap-4 cursor-pointer max-md:grid-cols-subgrid">
+          <div>
+            <h2 class="text-3xl font-extrabold text-white mb-6 hover:underline">
+              "Your Entertainment, Our Passion - Experience TV Like Never Before!"
+            </h2>
+
+            <p class="text-xl  text-white mb-6  hover:underline">
+              EntertainmentTV offers original shows ranging from high-stakes investment, documentaries,
+              behind-the-scenes
+              looks at
+              major brands, tips for starting your company and much more. 24hrs a day, 7 days a week.
+            </p>
+            <a href="javascript:void(0)"
+              class="text-lg  font-bold shadow-lg  bg-yellow-400  py-4 px-5 rounded  inline-block">
+              Watch Now
+            </a>
+          </div>
+          <img src="./assets/TV.jpg" alt="" class="w-1/2 max-md:w-full rounded-md overflow-hidden">
         </div>
       </div>
-      <footer>
-        footer
-      </footer>
+    </div>
 
+  </div>
+
+  <div class="container px-4">
+    <div>
+      <div class=" flex justify-between ">
+        <h2 class=" flex flex-row items-center leading-6 uppercase text-3xl font-extrabold lg:leading-7 font-heading tracking-wide pb-3 mb-5
+                      hover:underline ">
+          <a class="text-black" href="javascript:void(0)">
+            WEBINARS & EVENTS
+          </a>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="text-red-600 w-8 h-8 hover:cursor-pointer rotate-6 scale-x-100 -scale-y-100">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+          </svg>
+        </h2>
+        <div class="flex text-lg font-semibold text-black hover:underline hover:cursor-pointer">
+          <span class="mr-1 ">
+            See All
+          </span>
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="w-6 h-6 fill-yellow-400">
+            <path fill-rule="evenodd"
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-10 mb-20">
+      <div class="cursor-pointer">
+        <div class=" relative mb-4 shadow rounded-lg aspect-[16/9] overflow-hidden flex-none ">
+          <img src="./assets/online_course4.jpg" class="w-full" width="720" height="405" alt="">
+          <div class="absolute top-3 left-0 border rounded-full w-34  bg-violet-200 flex justify-start">
+            <div class="rounded-full border w-8 inline-block bg-indigo-700 ms-1 p-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="fill-violet-200" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+              </svg>
+            </div>
+            <span class="p-1 text-indigo-700 font-bold">
+              UPCOMING
+            </span>
+
+          </div>
+        </div>
+        <div>
+          <h2 class="text-xl font-extrabold text-black mb-6 hover:underline">
+            "Your Entertainment, Our Passion - Experience TV Like Never Before!"
+          </h2>
+
+          <p class="text-sm  text-black mb-6 hover:underline">
+            EntertainmentTV offers original shows ranging from high-stakes investment, documentaries, behind-the-scenes
+            looks at
+            major brands, tips for starting your company and much more. 24hrs a day, 7 days a week.
+          </p>
+          <a class="text-lg  font-bold shadow-lg  bg-yellow-400  py-4 px-5 rounded  max-sm:p-0 inline-block">
+            Register now
+          </a>
+        </div>
+      </div>
+      <div class="cursor-pointer">
+        <div class=" relative mb-4 shadow rounded-lg aspect-[16/9] overflow-hidden flex-none">
+          <img src="./assets/online_course5.jpg" class="w-full" width="720" height="405" alt="">
+          <div class="absolute top-3 left-0 border rounded-full w-34  bg-violet-200 flex justify-start">
+            <div class="rounded-full border w-8 inline-block bg-indigo-700 ms-1 p-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="fill-violet-200" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+              </svg>
+            </div>
+            <span class="p-1 text-indigo-700 font-bold">
+              UPCOMING
+            </span>
+
+          </div>
+        </div>
+        <div>
+          <h2 class="text-xl font-extrabold text-black mb-6 hover:underline">
+            "Your Entertainment, Our Passion - Experience TV Like Never Before!"
+          </h2>
+
+          <p class="text-sm  text-black mb-6 hover:underline">
+            EntertainmentTV offers original shows ranging from high-stakes investment, documentaries, behind-the-scenes
+            looks at
+            major brands, tips for starting your company and much more. 24hrs a day, 7 days a week.
+          </p>
+          <a class="text-lg  font-bold shadow-lg  bg-yellow-400  py-4 px-5 rounded  max-sm:p-0 inline-block">
+            Register now
+          </a>
+        </div>
+      </div>
+      <div class="cursor-pointer">
+        <div class=" relative mb-4 shadow rounded-lg aspect-[16/9] overflow-hidden flex-none">
+          <img src="./assets/online_course6.jpg" class="w-full" width="720" height="405" alt="">
+          <div class="absolute top-3 left-0 border rounded-full w-34  bg-violet-200 flex justify-start">
+            <div class="rounded-full border w-8 inline-block bg-indigo-700 ms-1 p-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="fill-violet-200" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+              </svg>
+            </div>
+            <span class="p-1 text-indigo-700 font-bold">
+              UPCOMING
+            </span>
+
+          </div>
+        </div>
+        <div>
+          <h2 class="text-xl font-extrabold text-black mb-6 hover:underline">
+            "Your Entertainment, Our Passion - Experience TV Like Never Before!"
+          </h2>
+
+          <p class="text-sm  text-black mb-6 hover:underline">
+            EntertainmentTV offers original shows ranging from high-stakes investment, documentaries, behind-the-scenes
+            looks at
+            major brands, tips for starting your company and much more. 24hrs a day, 7 days a week.
+          </p>
+          <a class="text-lg  font-bold shadow-lg  bg-yellow-400  py-4 px-5 rounded  max-sm:p-0 inline-block">
+            Register now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-20">
+    <div>
+      <div class=" flex justify-between ">
+        <h2 class=" flex flex-row items-center leading-6 uppercase text-3xl font-extrabold lg:leading-7 font-heading tracking-wide pb-3 mb-5
+                        hover:underline ">
+          <a class="text-black" href="javascript:void(0)">
+            IN THIS ISSUE
+          </a>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="text-red-600 w-8 h-8 hover:cursor-pointer rotate-6 scale-x-100 -scale-y-100">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+          </svg>
+        </h2>
+        <div class="flex text-lg font-semibold text-black hover:underline hover:cursor-pointer">
+          <span class="mr-1 ">
+            See All
+          </span>
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="w-6 h-6 fill-yellow-400">
+            <path fill-rule="evenodd" class=""
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="sm:grid sm:grid-cols-2 px-4 sm:gap-8 lg:grid-cols-none lg:flex lg:flex-row">
+
+      <div class="text-center  sm:col-span-2 ">
+        <img src="./assets/entrepreneur_2.jpg" class="inline" alt="">
+        <div class="flex flex-col items-center justify-center gap-3 mt-2">
+          <h3 class="text-3xl  font-extrabold">
+            January 2024
+          </h3>
+          <span class="italic  text-gray-600">
+            Entrepreneur Magazine
+          </span>
+          <a href="javascript:void(0)"
+            class="text-lg  font-bold shadow-lg  bg-yellow-400  py-4 px-5 rounded  max-sm:p-0 inline-block">
+            Subscribe Today
+          </a>
+        </div>
+      </div>
+
+      <div class="grid gap-10 min-[1024px]:grid-cols-2  min-[1024px]:auto-rows-max  col-span-2">
+        <div class="grid gap-2 auto-rows-max">
+          <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer ">
+            <img src="./assets/FinHealth.jpg" class="w-full     object-contain rounded-lg" alt="">
+
+          </div>
+          <div class="grid  gap-5 auto-rows-max">
+            <div class="uppercase text-black text-xs lg:text-sm tracking-widest leading-none">
+              BUSINESS NEWS
+            </div>
+            <h2
+              class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-black hover:underline text-lg lg:text-xl ">
+              Embark on a journey through the fascinating realm of behavioral economics and discover its profound impact
+              on your
+              financial health.
+            </h2>
+            <div class="flex items-center gap-4">
+              <img class="w-10 h-10 object-cover object-center rounded-full self-baseline" src="./assets/FinHealth.jpg"
+                alt="">
+              <div class="font-medium dark:text-black ">
+                <div
+                  class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-black hover:underline cursor-pointer">
+                  FinHealth
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="grid gap-2 auto-rows-max">
+          <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer ">
+            <img src="./assets/mba.jpg" class="w-full     object-contain rounded-lg" alt="">
+
+          </div>
+          <div class="grid  gap-5 auto-rows-max">
+            <div class="uppercase text-black text-xs lg:text-sm tracking-widest leading-none">
+              BUSINESS NEWS
+            </div>
+            <h2
+              class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-black hover:underline text-lg lg:text-xl ">
+              Elevate your career in finance with JAIN Online's prestigious MBA program tailored for professionals like
+              you.
+            </h2>
+            <div class="flex items-center gap-4">
+              <img class="w-10 h-10 object-cover object-center rounded-full self-baseline" src="./assets/mba.jpg"
+                alt="">
+              <div class="font-medium dark:text-black ">
+                <div
+                  class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-black hover:underline cursor-pointer">
+                  MBA
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="grid gap-2 auto-rows-max">
+          <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer ">
+            <img src="./assets/career.jpg" class="w-full     object-contain rounded-lg" alt="">
+
+          </div>
+          <div class="grid  gap-5 auto-rows-max">
+            <div class="uppercase text-black text-xs lg:text-sm tracking-widest leading-none">
+              BUSINESS NEWS
+            </div>
+            <h2
+              class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-black hover:underline text-lg lg:text-xl ">
+              Be prepared to articulate your motivations clearly and concisely. Highlight any relevant experiences,
+              skills, or
+              passions that led you to pursue this change.
+            </h2>
+            <div class="flex items-center gap-4">
+              <img class="w-10 h-10 object-cover object-center rounded-full self-baseline" src="./assets/career.jpg"
+                alt="">
+              <div class="font-medium dark:text-black ">
+                <div
+                  class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-black hover:underline cursor-pointer">
+                  Career
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="grid gap-2 auto-rows-max">
+          <div class="aspect-[16/9] relative rounded-lg overflow-hidden cursor-pointer ">
+            <img src="./assets/Trading_Courses.jpg" class="w-full     object-contain rounded-lg" alt="">
+          </div>
+          <div class="grid  gap-5 auto-rows-max">
+            <div class="uppercase text-black text-xs lg:text-sm tracking-widest leading-none">
+              BUSINESS NEWS
+            </div>
+            <h2
+              class="tracking-tight leading-6 font-black lg:leading-7 pb-2 text-black hover:underline text-lg lg:text-xl ">
+              Embark on a journey to financial independence with our cutting-edge trading courses designed for both
+              novice traders and
+              seasoned investors.
+            </h2>
+            <div class="flex items-center gap-4">
+              <img class="w-10 h-10 object-cover object-center rounded-full self-baseline"
+                src="./assets/Trading_Courses.jpg" alt="">
+              <div class="font-medium dark:text-black ">
+                <div
+                  class="flex items-center uppercase font-semibold tracking-widest leading-none text-xs lg:text-sm pb-2 text-black hover:underline cursor-pointer">
+                  Trading Courses
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <footer class="container">
+    <ul class="border-y-2 flex flex-wrap flex-row gap-10 justify-center font-bold py-8 cursor-pointer">
+      <li class="hover:underline">Terms of Use</li>
+      <li class="hover:underline">Privacy Policy</li>
+      <li class="hover:underline">Cookies Policy</li>
+      <li class="hover:underline">Accessibility Statement</li>
+      <li class="hover:underline">Site Map</li>
+      <li class="hover:underline">Contact Support</li>
+      <li class="hover:underline">Advertise</li>
+    </ul>
+
+    <div class="grid grid-cols-2 border-b-2 py-10 max-lg:grid-cols-none max-lg:grid-rows-2">
+      <div class="text-start px-10">
+        <h5 class="font-black text-xl">
+          Sign up for our free Daily newsletter
+        </h5>
+        <p class="font-bold text-gray-400 leading-6">
+          We'll be in your inbox every morning Monday-Saturday with all the day’s top business news, inspiring stories,
+          best
+          advice and exclusive reporting from Entrepreneur.
+        </p>
+
+      </div>
+      <div class="flex flex-col px-10 gap-4">
+        <div class="flex flex-row gap-4 ">
+          <form class="grow">
+            <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                  <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+                  <path
+                    d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+                </svg>
+              </div>
+              <input type="text" id="email-address-icon"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="name@magazine.com">
+            </div>
+          </form>
+          <div class="flex  items-center font-bold bg-yellow-400 rounded shadow-lg">
+            <a href="javascript:void(0)" class="text-md      px-5  max-sm:p-0 inline-block">
+              Subscribe
+            </a>
+          </div>
+        </div>
+
+        <p class="text-gray-400 leading-6 text-start">
+          I understand that the data I am submitting will be used to provide me with the above-described products and/or
+          services
+          and communications in connection therewith.
+
+          Read our <span class="font-bold underline">privacy policy</span> for more information.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 border-b-2 p-10">
+      <div class="leading-6 text-gray-400">
+        Copyright &copy; 2024 Mmm44556. All rights reserved.
+        <br />
+        Certain design elements, such as <a href="https://www.entrepreneur.com/"
+          class="uppercase underline font-extrabold">entrepreneur</a> website, may have been
+        inspired by or adapted from other websites. Mmm44556 acknowledges the original creators of these
+        design elements and expresses gratitude for their inspiration and creativity.
+      </div>
+      <div>
+
+        <ul class="flex flex-wrap flex-row gap-10  justify-center items-center font-bold py-8 cursor-pointer">
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+            </svg>
+          </li>
+          <li
+            class="hover:border hover:bg-gray-500 hover:scale-150 transition rounded-full w-12 h-12 flex justify-center items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+            </svg>
+
+          </li>
+        </ul>
+
+
+
+      </div>
+    </div>
+  </footer>
+  </div>
 </body>
 
-<script src="./dialog.js"></script>
 <script src="./navigator.js"></script>
 
 </html>
-
-<!-- 
- 
-  
-  </div>
-   -->

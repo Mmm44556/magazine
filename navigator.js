@@ -1,3 +1,4 @@
+
 // const nav = document.getElementById('navigator');
 // var lastScrollTop = 0;
 
@@ -19,10 +20,30 @@
 // });
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
   var lastScrollTop = 0;
-  var nav = document.getElementById('stickyNav');
+  const nav = document.getElementById('stickyNav');
+  const drawer = document.getElementById('drawer-backdrop');
 
+  //監聽offcanvas
+
+  drawer.addEventListener('transitionend', () => {
+    var ariaAttributeValue = drawer.getAttribute("aria-modal");
+    if (ariaAttributeValue !== null) {
+      // 如果存在特定的 ARIA 属性，则执行相应的操作
+      nav.classList.remove('translate-y-full');
+      nav.classList.add('transform', 'translate-y-0');
+    } else {
+      // 如果不存在特定的 ARIA 属性，则执行其他操作
+
+      nav.classList.remove('transform', 'translate-y-0');
+      nav.classList.add('translate-y-full');
+      nav.classList.add('py-2');
+    }
+
+  })
+  //監聽滑動控制nav
   window.addEventListener('scroll', function () {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -35,13 +56,13 @@ document.addEventListener('DOMContentLoaded', function () {
       // Scroll up
       nav.classList.remove('translate-y-full');
       nav.classList.add('transform', 'translate-y-0');
-      
+
       if (scrollTop === 0) {
         console.log('@@@@@@@')
         nav.classList.remove('py-2');
       }
     }
- 
+
 
     lastScrollTop = scrollTop;
   });
