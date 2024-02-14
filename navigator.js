@@ -31,12 +31,22 @@ document.addEventListener('DOMContentLoaded', function () {
   drawer.addEventListener('transitionend', () => {
     var ariaAttributeValue = drawer.getAttribute("aria-modal");
     if (ariaAttributeValue !== null) {
+      if (lastScrollTop === 0) {
+        nav.classList.add('-translate-y-full');
+
+        return
+      }
       // 如果存在特定的 ARIA 属性，则执行相应的操作
       nav.classList.remove('translate-y-full');
       nav.classList.add('transform', 'translate-y-0');
+
     } else {
       // 如果不存在特定的 ARIA 属性，则执行其他操作
-
+      console.log('@')
+      if (lastScrollTop === 0) {
+        nav.classList.remove('-translate-y-full');
+        return
+      }
       nav.classList.remove('transform', 'translate-y-0');
       nav.classList.add('translate-y-full');
       nav.classList.add('py-2');
@@ -49,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (scrollTop > lastScrollTop && scrollTop > 116) {
       // Scroll down
+
       nav.classList.remove('transform', 'translate-y-0');
       nav.classList.add('translate-y-full');
       nav.classList.add('py-2');
